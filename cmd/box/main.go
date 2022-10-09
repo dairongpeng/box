@@ -4,6 +4,7 @@ import (
 	"github.com/dairongpeng/box/log"
 	"github.com/go-kit/log/level"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 	"os"
 )
 
@@ -35,6 +36,8 @@ func main() {
 	root.PersistentFlags().StringVar(&cfg.mode, "mode", "normal", "specify the mode of service operation")
 	root.PersistentFlags().StringVar(&cfg.logConfig.Level, "log.level", "info", "Only log messages with the given severity or above. One of: [debug, info, warn, error]")
 	root.PersistentFlags().StringVar(&cfg.logConfig.Format, "log.format", "logfmt", "Output format of log messages. One of: [logfmt, json]")
+	viper.BindPFlag("debug", root.PersistentFlags().Lookup("debug"))
+	viper.BindPFlag("format", root.PersistentFlags().Lookup("log.format"))
 
 	root.PersistentPreRunE = func(cmd *cobra.Command, args []string) error {
 		return nil
@@ -46,6 +49,8 @@ func main() {
 		level.Info(logger).Log("debug", cfg.debug)
 		level.Info(logger).Log("mode", cfg.mode)
 		level.Info(logger).Log("format", cfg.logConfig.Format)
+
+		level.Info(logger).Log("viper format", viper.GetViper().Get("format"))
 		return nil
 	}
 
