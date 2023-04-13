@@ -6,6 +6,7 @@ require (
 	github.com/fatih/color v1.13.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/golang-jwt/jwt/v4 v4.4.2
+	github.com/gorilla/websocket v1.5.0
 	go.uber.org/ratelimit v0.2.0
 	golang.org/x/sync v0.1.0
 )

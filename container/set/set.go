@@ -42,6 +42,16 @@ func (s *Set) Any() string {
 	return ""
 }
 
+// Values 获取所有的值
+func (s *Set) Values() []interface{} {
+	values := make([]interface{}, 0)
+	for _, v := range s.data {
+		values = append(values, v)
+	}
+
+	return values
+}
+
 // Intersection 两个集合做交集
 func Intersection(s1, s2 *Set) *Set {
 	intersection := &Set{make(map[string]interface{})}
@@ -91,3 +101,20 @@ func Difference(s1, s2 *Set) *Set {
 	}
 	return difference
 }
+
+//func main() {
+//	set1 := NewSet([]string{"apple", "banana", "orange"})
+//	set2 := NewSet([]string{"banana", "pear", "kiwi"})
+//
+//	fmt.Println("Set1:", set1.data)
+//	fmt.Println("Set2:", set2.data)
+//
+//	intersection := Intersection(set1, set2)
+//	fmt.Println("Intersection:", intersection.data)
+//
+//	union := Union(set1, set2)
+//	fmt.Println("Union:", union.data)
+//
+//	difference := Difference(set1, set2)
+//	fmt.Println("Difference:", difference.data)
+//}
