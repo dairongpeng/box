@@ -1,3 +1,3 @@
-module github.com/dairongpeng/gbox
+module github.com/dairongpeng/kit
 
 go 1.20
